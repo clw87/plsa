@@ -166,12 +166,9 @@ public final class TextHelper {
      */
     public static int getMaxValueIndex(double[] array) {
         int maxIndex = 0;
-        double maxValue = array[0];
-
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] > maxValue) {
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > array[maxIndex]) {
                 maxIndex = i;
-                maxValue = array[i];
             }
         }
         return maxIndex;

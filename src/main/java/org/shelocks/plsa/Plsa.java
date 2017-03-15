@@ -16,12 +16,16 @@ import java.util.Set;
  */
 public class Plsa {
 
+	//主题的数量
     private int topicNum;
 
+    //文档的数量
     private int docSize;
 
+    //文档中词的数量
     private int vocabularySize;
 
+    //文档特征矩阵
     private int[][] docTermMatrix;
 
     //p(z|d)
@@ -74,13 +78,17 @@ public class Plsa {
         topicTermPros = new double[topicNum][vocabularySize];
         docTermTopicPros = new double[docSize][vocabularySize][topicNum];
 
+        //使用随机的方法给文档-主题矩阵随机出来值
         //init p(z|d),for each document the constraint is sum(p(z|d))=1.0
         for (int i = 0; i < docSize; i++) {
+        	//随机出来一堆的随机数
             double[] pros = randomProbilities(topicNum);
             for (int j = 0; j < topicNum; j++) {
                 docTopicPros[i][j] = pros[j];
             }
         }
+        
+        //随机出来词和主题的概率矩阵
         //init p(w|z),for each topic the constraint is sum(p(w|z))=1.0
         for (int i = 0; i < topicNum; i++) {
             double[] pros = randomProbilities(vocabularySize);
